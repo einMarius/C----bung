@@ -1,51 +1,39 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 int ggT(int a, int b) {
-
-    if(a % b == 0) {
-        return b;
-    } else 
-        ggT(b, a%b);
-    
+    if (b == 0) {
+        return a;  // Wenn b = 0, ist a der GGT
+    }
+    return ggT(b, a % b);  // Rekursiver Aufruf
 }
 
 bool ggtEqOne(int a, int b) {
+    int ggt = ggT(a, b);
 
-    if(ggT(a, b) == 1) {
-        return true;
-    } else 
-        return false;
-
+    return (ggt == 1);
 }
 
 int main(int argc, char const *argv[]) {
     
-    cout << ggT(5, 5) << endl;
-    cout << ggtEqOne(5, 5) << endl;
-    bool tes = false;
-    cout << tes << endl;
+    const int x = 10, y = 10;
+    bool matrix[x][y];
 
-    int a, b;
-
-    cout << "Gib zwei Zahlen an fuer die zweidimensionale Matrix an: ";
-    cin >> a >> b;
-    cout << endl;
-
-    bool matrix[a][b];
-
-    for (size_t i = 0; i < a; i++) {
-        cout << i << endl;
-        for (size_t j = 0; j < b; j++) {
-            cout << j << endl;
-            matrix[i][j] = ggtEqOne(i, j);  
+    for (size_t i = 0; i < x; i++) {
+        for (size_t j = 0; j < y; j++) {
+            cout << matrix[i][j] << ", ";
         }
+        cout << endl;
     }
+    
+    cout << "-------------------------" << endl;
 
-    for (size_t i = 0; i < a; i++) {
-        for (size_t j = 0; j < b; j++) {
-            cout << matrix [i][j] << " ";
+    for (size_t i = 0; i < x; i++) {
+        for (size_t j = 0; j < y; j++) {
+            matrix[i][j] = ggtEqOne(i, j);
+            cout << matrix[i][j] << ", ";
         }
         cout << endl;
     }
