@@ -2,7 +2,7 @@
 
 using namespace std;
 
-/**f
+/**
  * 
  * Du erhältst zwei ganze Zahlen \(a\) und \(b\). In einem Zug kannst du eine Zahl \(k\) aus dem Bereich von 1 bis 10 auswählen und zu \(a\) addieren oder von \(a\) subtrahieren. 
  * Mit anderen Worten: Du wählst eine ganze Zahl \(k \in [1;10]\) und führst eine der folgenden Operationen aus: \(a := a + k\) oder \(a := a - k\). 
