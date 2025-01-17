@@ -5,6 +5,7 @@
         "iosfwd": "cpp",
         "iostream": "cpp",
         "random": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "vector": "cpp"
     }
 }
