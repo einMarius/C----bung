@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -10,32 +10,39 @@ using namespace std;
   * 
   */
 
-int findBiggest(vector<int> vector) {
+ int getBiggestValueOfMap(unordered_map<int, int> map) {
 
-    int size = vector.size();
     int biggest = 0;
-    for (size_t i = 0; i < size; i++) {
-        if(biggest <= vector[i]) {
-            biggest = vector[i];
+    for (const auto& pair : map) {
+        if (biggest <= pair.second) {
+            biggest = pair.second;
         }
-    }    
+    }
 
     return biggest;
-}
+ }
 
 int main(int argc, char const *argv[]) {
     
     int n;
-    cout << "Gib die Zahl N an: ";
     cin >> n;
 
-    //Bei Vektor immer diese zweite Klammer mit angeben!
-    vector<int> zahlen(n);
-    for (size_t i = 0; i < n; i++) {
-        cin >> zahlen[i];
-    }
+    unordered_map<int, int> haufigkeiten;
 
-    cout << findBiggest(zahlen) << endl;
+    for (size_t i = 0; i < n; i++) {
+        int input;
+        cin >> input;
+
+        haufigkeiten[input]++;
+    }
+    
+    int biggestValueInMap = getBiggestValueOfMap(haufigkeiten);
+
+    for (const auto& map : haufigkeiten) {
+        if(map.second == biggestValueInMap) {
+            cout << map.first << " ";
+        }
+    }
 
     return 0;
 }

@@ -1,53 +1,64 @@
 #include <iostream>
 #include <vector>
-#include <algorithm> // Für std::sort
+#include <algorithm>
 
 using namespace std;
 
-/**
- * Überprüft, ob alle Container in die Laderäume passen
- */
 int main(int argc, char const *argv[]) {
-    int anzahlLaderaume, anzahlContainer;
-    cin >> anzahlLaderaume >> anzahlContainer;
+    
+    int laderaumeAnzahl, containerAnzahl;
+    cin >> laderaumeAnzahl >> containerAnzahl;
 
-    vector<int> groesseLaderaume(anzahlLaderaume);
-    vector<int> groesseContainer(anzahlContainer);
-
-    // Eingabe: Laderäume
-    for (int i = 0; i < anzahlLaderaume; i++) {
-        char groesse;
-        cin >> groesse;
-        switch (groesse) {
-            case 'L': groesseLaderaume[i] = 200; break;
-            case 'M': groesseLaderaume[i] = 100; break;
-            case 'S': groesseLaderaume[i] = 50; break;
-            default: break;
+    int *laderaumeGroessen = new int[laderaumeAnzahl];
+    int *containerGroessen = new int[containerAnzahl];
+    
+    //Containergrößen eingeben
+    for (size_t i = 0; i < containerAnzahl; i++) {
+        char input;
+        cin >> input;
+        switch (input) {
+        case 'L':
+            containerGroessen[i] = 200;
+            break;
+        case 'M':
+            containerGroessen[i] = 100;
+            break;
+        case 'S':
+            containerGroessen[i] = 50;
+            break;
+        default:
+            break;
         }
     }
 
-    // Eingabe: Container
-    for (int i = 0; i < anzahlContainer; i++) {
-        cin >> groesseContainer[i];
+    //Laderaumgrößen eingeben
+    for (size_t i = 0; i < laderaumeAnzahl; i++) {
+        cin >> laderaumeGroessen[i];
+    }
+    
+    if(laderaumeAnzahl < containerAnzahl) {
+        cout << "No" << endl;
+        return 1;
     }
 
-    // Sortiere beide Listen in absteigender Reihenfolge
-    sort(groesseLaderaume.rbegin(), groesseLaderaume.rend());
-    sort(groesseContainer.rbegin(), groesseContainer.rend());
+    // Sortieren der Arrays
+    sort(laderaumeGroessen, laderaumeGroessen + laderaumeAnzahl);
+    sort(containerGroessen, containerGroessen + containerAnzahl);
 
-    // Überprüfe, ob alle Container zugeordnet werden können
-    int j = 0; // Index für Laderäume
-    for (int i = 0; i < anzahlContainer; i++) {
-        // Wenn kein Laderaum mehr übrig ist oder der größte Container nicht passt
-        if (j >= anzahlLaderaume || groesseContainer[i] > groesseLaderaume[j]) {
+    // Vergleich der Container mit Laderäumen
+    for (int i = containerAnzahl - 1; i > 0; i--) {
+        if (laderaumeGroessen[i] > containerGroessen[i]) {
             cout << "No" << endl;
-            return 0;
+            delete[] laderaumeGroessen;
+            delete[] containerGroessen;
+            return 1;
         }
-        // Wechsle zum nächsten Laderaum
-        j++;
     }
 
-    // Alle Container wurden erfolgreich zugeordnet
     cout << "Yes" << endl;
+
+    delete[] laderaumeGroessen;
+    delete[] containerGroessen;
+
     return 0;
 }
