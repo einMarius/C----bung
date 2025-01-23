@@ -4,6 +4,7 @@
 
 using namespace std;
 
+/*
 int main(int argc, char const *argv[]) {
 
     const size_t blockSize = 50; 
@@ -32,7 +33,7 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
-
+*/
 
 /*
 Aufgabe b)
@@ -67,18 +68,17 @@ int main(int argc, char const *argv[]) {
 /*
 
 Aufgabe a)
+*/
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char *argv[]) {
 
-    if (argc > 1) {
+    if (argc > 2) {
         return 1;
     }
+    
+    string filename = argv[1];
 
-    string filename;
-    cout << "Datei: ";
-    cin >> filename;
-
-    ifstream input(filename);
+    fstream input(filename);
 
     if(!input) {
         cerr << "Fehler beim Oeffnen der Datei: " << filename << "\n";
@@ -94,4 +94,3 @@ int main(int argc, char const *argv[]) {
     input.close();
     return 0;
 }
-*/
