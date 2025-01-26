@@ -1,0 +1,8 @@
+/*
+haben beispiel.h erstellt
+dann in beispiel.cpp gearbeitet
+
+
+dann complex.h erstellt
+
+*/

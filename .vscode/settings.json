@@ -41,6 +41,7 @@
         "memory": "cpp",
         "new": "cpp",
         "optional": "cpp",
+        "set": "cpp",
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
